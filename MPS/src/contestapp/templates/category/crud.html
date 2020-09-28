@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+
+
+{% block content %}
+<div style="padding-top: 1%; padding-left: 1%">
+<a type="button" class="btn btn9 btn-lg" style="font-family: TeX Gyre Adventor; color: black;"
+   href='{{ request.META.HTTP_REFERER }}'>
+	Back to Contest Page</a>
+</div>
+
+<h1 style="padding-top: 3%; padding-left: 3%; font-family: Bauhaus; color: white; opacity: 85%">
+	Add your wanted categories</h1>
+<br>
+
+<form method='POST' action=''> {% csrf_token %}
+
+	<div class="fieldWrapper" style="padding-left: 3%; font-family: Bauhaus; color: white; font-size:20px;">
+	{% for error in validation_error %}
+		<p> {{ error }} </p>
+	{% endfor %}
+		<br>
+		{{ formset.as_p }}
+	</div>
+	<div style="padding-left: 3%">
+	<button type='submit' style="font-family: Bauhaus" class="btn btn2 btn-lg">Update</button>
+	</div>
+
+</form>
+{% endblock %}

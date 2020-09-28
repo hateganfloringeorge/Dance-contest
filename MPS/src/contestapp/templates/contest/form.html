@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+
+
+{% block content %}
+    <h1 style="padding-top: 3%; padding-left: 3%; font-family: Bauhaus; color: white; opacity: 85%">Create new Contest</h1>
+<br>
+
+<form method='POST' action=''> {% csrf_token %}
+	{% for field in form %}
+	<div class="fieldWrapper" style="padding-left: 3%; font-family: Bauhaus; color: white; font-size:20px;">
+		{{ field.errors }}
+		{{ field.label_tag }} <br>
+		{{ field }}
+	</div>
+	<br>
+	{% endfor %}
+
+	<div style="padding-left: 3%">
+		<button type='submit' class="btn btn2 btn-lg" style="font-family: Bauhaus">Let's get started</button>
+	</div>
+</form>
+{% endblock %}

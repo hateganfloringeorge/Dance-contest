@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+
+
+{% block content %}
+    <h1 style="font-family: Candara; color: white;">About</h1>
+<p style="font-family: Candara; color: white;"><b>Title: </b> <i>{{ object.title }}</i></p>
+<p style="font-family: Candara; color: white;"><b>Number of Teams: </b> <i>{{ object.teamCount }}</i></p>
+<p style="font-family: Candara; color: white;"><b>Members per Team: </b> <i>{{ object.membersPerTeam }}</i></p>
+<p style="font-family: Candara; color: white;"><b>Number of Rounds: </b> <i>{{ object.numberOfRounds }}</i></p>
+<p style="font-family: Candara; color: white;"><b>Current Round: </b> <i>{{ object.currentRound }}</i></p>
+
+{% if request.user.is_superuser %}
+	{% if object.isStarted %}
+		<a type="button" class="btn btn5 btn-lg" style="color: black;" href='{{ object.get_absolute_url }}/team-new'>Edit teams status</a></button>
+		<a type="button" class="btn btn5 btn-lg" style="color: black;" href='{{ object.get_absolute_url }}/category-new'>Edit Category</a></button>
+		{% if object.currentRound == object.numberOfRounds %}
+			<a type="button" class="btn btn6 btn-lg" style="color: black;" href='{{ object.get_absolute_url }}/winner'>Show winner</a></button>
+		{% else %}
+			<a type="button" class="btn btn6 btn-lg" style="color: black;" href='{{ object.get_absolute_url }}/magic'>Next Round</a></button>
+		{% endif %}
+		<a type="button" class="btn btn6 btn-lg" style="color: black;" href='{{ object.get_absolute_url }}/round/{{ object.currentRound }}/grades'>Standings</a></button>
+	{% else %}
+		<a type="button" class="btn btn5 btn-lg" style="color: black;" href='{{ object.get_absolute_url }}/team-new'>Create Team</a></button>
+		<a type="button" class="btn btn3 btn-lg" style="color: black;" href='{{ object.get_edit_url }}'>Edit contest</a></button>
+		<a type="button" class="btn btn6 btn-lg" style="color: black;" href='{{ object.get_absolute_url }}/start'>Start concurs</a></button>
+		<a type="button" class="btn btn5 btn-lg" style="color: black;" href='{{ object.get_absolute_url }}/category-new'>Create Category</a></button>
+	{% endif %}
+
+	<a type="button" class="btn btn4 btn-lg" style="color: black;" href='{{ object.get_delete_url }}'>Delete contest</a></button>
+	<a type="button" class="btn btn6 btn-lg" style="color: black;" href='{{ object.get_absolute_url }}/category-list'>Category List</a></button>
+	<a type="button" class="btn btn6 btn-lg" style="color: black;" href='{{ object.get_absolute_url }}/team-list'>Team List</a></button>
+	<a type="button" class="btn btn6 btn-lg" style="color: black;" href='{{ object.get_absolute_url }}/round-list'>Round List</a></button>
+	<a type="button" class="btn btn6 btn-lg" style="color: black;" href='{{ object.get_absolute_url }}/round/{{ object.currentRound }}/grades'>Standings</a></button>
+{% else %}
+	<a type="button" class="btn btn6 btn-lg" style="color: black;" href='{{ object.get_absolute_url }}/round/{{ object.currentRound }}/grades'>Standings</a></button>
+	<a type="button" class="btn btn6 btn-lg" style="color: black;" href='{{ object.get_absolute_url }}/round-list'>Round List</a></button>
+{% endif %}
+
+{% endblock %}

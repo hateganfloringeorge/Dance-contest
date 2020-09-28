@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+
+
+{% block content %}
+<h1 style="font-family: Candara; color: white;" align="left">The Winning Team is...</h1><br>
+
+<img src = "https://madydans.com/wp-content/uploads/2017/03/tango.png" height="400;" class="left">
+<div style="padding-top: 1%;">
+
+		<div style="width:500px;" align="left">
+			<a type="button" class="btn btn-lg" style="font-family: Brush Script MT; color: white; font-size: 100px;" >
+				{{object.teamName}}</a>
+		</div>
+	</div>
+</div>
+
+    {% for object in object_list %}
+		<li>
+			<h1>
+				{{ winners.name}} {{winners.age}}
+			</h1>
+		</li>
+	{% endfor %}
+{% endblock %}

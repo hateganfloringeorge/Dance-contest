@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+
+
+{% block content %}
+<div style="padding-top: 1%; padding-left: 1%">
+    <a type="button" class="btn btn9 btn-lg" style="font-family: TeX Gyre Adventor;color: black;"
+       href='{{ request.META.HTTP_REFERER }}'>Back to Contest Page</a>
+</div>
+
+<h1 style="padding-top: 3%; padding-left: 3%; font-family: TeX Gyre Adventor; color: white; opacity:85%; font-size:45px;">
+    About</h1>
+<br>
+
+<p style="padding-left: 3%; font-family: Bauhaus; color: white; font-size:25px; opacity:85%;">
+    <b>Name of the Team: </b><i style="color: #fbb39c; opacity:50% !important;">{{ object.teamName }}</i></p>
+<p style="padding-left: 3%; font-family: Bauhaus; color: white; font-size:25px; opacity:85%;">
+    <b>Number of the Team: </b><i style="color: #fbb39c; opacity:50% !important;">{{ object.numberOnBack }}</i></p>
+
+{% if request.user.is_superuser %}
+    <p style="padding-left: 3%; font-family: Bauhaus; color: white; font-size:25px; opacity:85%;">
+        <b>Team is disqualified: </b>
+        <i style="color: #fbb39c; opacity:50% !important;">{{ object.isDisqualified }}</i></p>
+{% endif %}
+
+<div style="padding-left: 1%">
+{% if request.user.is_superuser %}
+    <a type="button" class="btn btn4 btn-lg" style="font-family: TeX Gyre Adventor; color: black; width:444px;"
+       href='{{ object.get_delete_url }}/delete'>Delete</a></button>
+    <br><br>
+    <a type="button" class="btn btn5 btn-lg" style="font-family: TeX Gyre Adventor; color: black; width:220px;"
+       href='{{ object.get_absolute_url }}/member-new'>Add Member</a></button>
+    <a type="button" class="btn btn6 btn-lg" style="font-family: TeX Gyre Adventor; color: black; width:220px;"
+       href='{{ object.get_absolute_url }}/member-list'>Show Members</a></button>
+    <br><br>
+    <a type="button" class="btn btn6 btn-lg" style="font-family: TeX Gyre Adventor; color: black; width:444px;"
+       href='{{ object.get_absolute_url }}/category-list'>Show Categories</a></button>
+{% else %}
+	<a type="button" class="btn btn6 btn-lg" style="font-family: TeX Gyre Adventor; color: black; width:220px;"
+       href='{{ object.get_absolute_url }}/member-list'>Members List</a></button>
+	<a type="button" class="btn btn6 btn-lg" style="font-family: TeX Gyre Adventor; color: black; width:220px;"
+       href='{{ object.get_absolute_url }}/category-list'>Category List</a></button>
+{% endif %}
+</div>
+{% endblock %}

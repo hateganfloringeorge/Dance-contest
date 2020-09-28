@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+
+
+{% block content %}
+<h1 style="padding-top: 3%; padding-left: 3%; font-family: Bauhaus; color: white; opacity: 85%">
+	Add your grade from 1 to 10</h1>
+<br>
+
+<form method='POST' action=''> {% csrf_token %}
+	<div class="fieldWrapper" style="padding-left: 3%; font-family: Bauhaus; color: white; font-size:20px;">
+	{{ formset.management_form }}
+	{% for form in formset %}
+		{{ form.as_p}}	
+	{% endfor %}
+	</div>
+	<div style="padding-left: 3%">
+		<button type='submit' style="font-family: Bauhaus" class="btn btn2 btn-lg">Submit</button>
+	</div>
+</form>
+{% endblock %}

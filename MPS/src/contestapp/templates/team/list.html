@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+
+<body style="background-image: url('https://wallpapercave.com/wp/KLk5qFb.jpg'); background-size: 100% ">
+{% block content %}
+
+<div style="padding-top: 1%; padding-left: 1%">
+	<a type="button" class="btn btn9 btn-lg" style="font-family: TeX Gyre Adventor;color: black;"
+	   href='{{ request.META.HTTP_REFERER }}'>Back to Contest Page</a>
+</div>
+
+<h1 style="padding-top: 3%; padding-left: 13%; font-family: Bauhaus; color: white; opacity: 75%"> Teams </h1>
+
+	{% for object in object_list %}
+<div style="padding-top: 1%; padding-left: 1%">
+	<div class=" mx-auto btn-group-vertical" style="width:500px;" >
+		<a type="button" class="btn btn7 btn-lg" style="font-family: Bauhaus; color: black; text-opacity: 100%"
+		   href='{{ object.get_absolute_url }}'>{{object.teamName}}</a>
+	</div>
+</div>
+
+</body>
+
+	{% endfor %}
+
+
+{% endblock %}

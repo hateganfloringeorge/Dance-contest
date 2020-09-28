@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+<h1 style="padding-top: 3%; padding-left: 3%; font-family: TeX Gyre Adventor; color: white; font-size: 30px;">
+	Are you sure you want to delete <i><b>"{{object.title}}"?</b></i></h1>
+<br>
+
+<form method='POST'> {%csrf_token %}
+	<div style="padding-left: 25%">
+	<button class='btn btn-outline-danger' style="font-family: TeX Gyre Adventor; font-size: 25px;">Yes, delete</button>
+		<a class='btn btn-outline-success' style="font-family: TeX Gyre Adventor; font-size: 25px;" href="/" role="button">No</a>
+	</div>
+</form>
+
+{% endblock %}
